@@ -18,7 +18,7 @@ Para executar o algoritmo, é preciso seguir os seguintes passos: <br>
     - o número de vértices na primeira linha
     - as arestas em seguida, uma por linha, no formato ```verticeInicial verticeFinal```, separados por espaço
     - os vértices devem ser identificados como inteiros na sequência [1, n], onde n representa o número de vertices 
-3. Execute o arquivo ```main.py```
+3. Execute o arquivo ```main.py``` em [enumeracao_sem_peso](/enumeracao_sem_peso)
 4. A primeira árvore será gerada e exibida na tela. Para fechar a imagem, tecle ```q```
 5. Para encerrar o programa, tecle ```s```
 6. Para gerar a próxima árvore, tecle ```p```
@@ -30,7 +30,7 @@ Para executar o algoritmo, é preciso seguir os seguintes passos: <br>
     - as arestas em seguida, uma por linha, no formato ```verticeInicial verticeFinal peso```, separados por espaço
     - os vértices devem ser identificados como inteiros na sequência [1, n], onde n representa o número de vertices 
     - o peso pode ser um número decimal ou inteiro
-3. Execute o arquivo ```main.py```
+3. Execute o arquivo ```main.py``` em [enumeracao_com_peso](/enumeracao_com_peso)
 4. A primeira árvore será gerada e exibida na tela. Para fechar a imagem, tecle ```q```
 5. Para encerrar o programa, tecle ```s```
 6. Para gerar a próxima árvore, tecle ```p```
