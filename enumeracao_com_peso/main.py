@@ -5,6 +5,7 @@ from particao import Particao
 from aresta_ponderada import ArestaPonderada
 from arvore_ponderada import ArvorePonderada
 from heap_minima_particao import HeapMinimaParticao
+import keyboard
 
 def particionamento(particao: Particao, particoes: HeapMinimaParticao):
     particao1: Particao = particao.copia()
@@ -45,7 +46,7 @@ def plotarGrafo(grafo, arestas, contador, pos, custo):
 
 def main():
 
-    with open("grafo.txt", "r") as grafo:
+    with open("enumeracao_com_peso/grafo.txt", "r") as grafo:
         qtdVertices = int(grafo.readline())
         particoes: HeapMinimaParticao = HeapMinimaParticao(qtdVertices)
         particao = Particao(qtdVertices)
@@ -55,19 +56,21 @@ def main():
             aresta = ArestaPonderada(*valores)
             particao.inserirArestaObrigatoria(aresta)
 
-    with open("arvores.txt", "w") as arvores:
+    with open("enumeracao_com_peso/arvores.txt", "w") as arvores:
         particoes.inserirElemento(particao)
         if not particao.calcularArvoreGeradoraMinima():
             print("Não é possível gerar uma árvore para esse grafo")
+            return
+
         menorArvore: ArvorePonderada = particao.getArvoreGeradoraMinima()
 
         G = nx.Graph()
         G.add_nodes_from(list(range(1, qtdVertices + 1)))
         pos = nx.circular_layout(G)
         contador = 1
-        
-        while menorArvore is not None and particoes.tamanhoHeap:
-
+        print("Tecle p para gerar a próxima árvore ou s para encerrar")
+        sent = True
+        while menorArvore is not None and particoes.tamanhoHeap and sent:
             particao: Particao = particoes.removerElementoMinimo()
             menorArvore: ArvorePonderada = particao.getArvoreGeradoraMinima()
             elem = menorArvore.getArestas()
@@ -81,6 +84,14 @@ def main():
             particionamento(particao, particoes)
 
             contador += 1
+            while True:
+                if keyboard.is_pressed('s'):
+                    sent = False
+                    break
+                if keyboard.is_pressed('p'):
+                    break
+
+
 
 
         

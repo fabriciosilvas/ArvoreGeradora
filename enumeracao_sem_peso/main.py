@@ -39,7 +39,7 @@ def plotarGrafo(grafo, arestas, contador, pos):
 
 def main():
 
-    with open("grafo.txt", "r") as grafo:
+    with open("enumeracao_sem_peso/grafo.txt", "r") as grafo:
         qtdVertices = int(grafo.readline())
         particoes = []
         particao = Particao(qtdVertices)
@@ -49,10 +49,11 @@ def main():
             aresta = ArestaPonderada(*valores)
             particao.inserirAresta(aresta)
 
-    with open("arvores.txt", "w") as arvores:
+    with open("enumeracao_sem_peso/arvores.txt", "w") as arvores:
         particoes.append(particao)
         if not particao.calcularArvoreGeradora():
             print("Não é possível gerar uma árvore para esse grafo")
+            return
 
         menorArvore: ArvorePonderada = particao.getArvoreGeradora()
 
@@ -61,6 +62,7 @@ def main():
         pos = nx.circular_layout(G)
         contador = 1
         sentinela = True
+        print("Tecle p para gerar a próxima árvore ou s para encerrar")
         while menorArvore is not None and len(particoes) and sentinela:
 
             particao: Particao = particoes.pop()
@@ -73,8 +75,6 @@ def main():
             particionamento(particao, particoes)
 
             contador += 1
-            
-            print("Tecle p para gerar a próxima árvore ou s encerrar")
             
             
             while True:
